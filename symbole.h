@@ -12,7 +12,7 @@ class Symbole {
       Symbole(int i) : ident(i) {  }
       virtual ~Symbole() { }
       operator int() const { return ident; }
-      virtual void Affiche();
+      virtual string Affiche();
 
    protected:
       int ident;
@@ -22,7 +22,7 @@ class Entier : public Symbole {
    public:
       Entier(int v) : Symbole(INT), valeur(v) { }
       ~Entier() { }
-      virtual void Affiche();
+      virtual string Affiche();
    protected:
       int valeur;
 };
@@ -32,7 +32,7 @@ class Expr : public Symbole {
       Expr(int v):Symbole(EXPR), valeur(v) {}
       virtual ~Expr() {}
       double eval();
-      void Affiche();
+      string Affiche();
    protected:
       int valeur;
 };

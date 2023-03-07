@@ -1,20 +1,19 @@
 #include "symbole.h"
 #include <iostream>
+#include <string>
 
-void Symbole::Affiche() {
-   cout<<Etiquettes[ident];
+string Symbole::Affiche() {
+   return(Etiquettes[ident]);
 }
 
-void Entier::Affiche() {
-   Symbole::Affiche();
-   cout<<"("<<valeur<<")";
+string Entier::Affiche() {
+   return(Symbole::Affiche()+"("+std::to_string(valeur)+")");
 }
 
 double Expr::eval(){
    return valeur;
 }
 
-void Expr::Affiche() {
-   Symbole::Affiche();
-   cout<<"("<<valeur<<")";
+string Expr::Affiche() {
+   return(Symbole::Affiche()+"("+std::to_string(valeur)+")");
 }

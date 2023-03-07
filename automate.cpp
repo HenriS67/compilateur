@@ -20,6 +20,11 @@ Automate::Automate(string ch){
     while(*(s = lexer->Consulter()) != FIN ) {
         s->Affiche();
         cout << endl;
+        if(s->Affiche()=="ERREUR"){
+            cout << endl;
+            cout << "Expression Invalide"<<endl;
+            break;
+        }
         pileEtat.back()->transition(*this,s);
         for (int i = 0; i < pileEtat.size(); i++) {
             pileEtat[i]->Affiche();
@@ -35,7 +40,7 @@ Automate::Automate(string ch){
     }
 
     while(pileSymbole.size() != 1) {
-        s->Affiche();
+        cout << (s->Affiche());
         cout << endl;
         pileEtat.back()->transition(*this,s);
         for (int i = 0; i < pileEtat.size(); i++) {

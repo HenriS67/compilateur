@@ -3,8 +3,9 @@
 #include "automate.h"
 
 int main(void) {
-   string chaine("(1+34)*123");
-
+   cout << "Entrez une expression +,*,(,),int"<<endl;
+   string chaine;
+   cin >> chaine;
    Automate * a = new Automate(chaine);
 
    return 0;
