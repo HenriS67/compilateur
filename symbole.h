@@ -22,7 +22,7 @@ class Entier : public Symbole {
    public:
       Entier(int v) : Symbole(INT), valeur(v) { }
       ~Entier() { }
-      virtual string Affiche();
+      string Affiche();
    protected:
       int valeur;
 };

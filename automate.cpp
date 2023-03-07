@@ -18,43 +18,42 @@ Automate::Automate(string ch){
     Symbole * s;
 
     while(*(s = lexer->Consulter()) != FIN ) {
-        s->Affiche();
-        cout << endl;
-        if(s->Affiche()=="ERREUR"){
-            cout << endl;
-            cout << "Expression Invalide"<<endl;
-            break;
-        }
-        pileEtat.back()->transition(*this,s);
-        for (int i = 0; i < pileEtat.size(); i++) {
-            pileEtat[i]->Affiche();
-        }
-        cout << endl;
-
-        for (int i = 0; i < pileSymbole.size(); i++) {
-            pileSymbole[i]->Affiche();
-        }
-        cout << endl;
-
-        lexer->Avancer();
-    }
-
-    while(pileSymbole.size() != 1) {
         cout << (s->Affiche());
         cout << endl;
         pileEtat.back()->transition(*this,s);
         for (int i = 0; i < pileEtat.size(); i++) {
-            pileEtat[i]->Affiche();
+            cout <<pileEtat[i]->Affiche();
         }
         cout << endl;
 
         for (int i = 0; i < pileSymbole.size(); i++) {
-            pileSymbole[i]->Affiche();
+            cout <<pileSymbole[i]->Affiche();
         }
         cout << endl;
 
         lexer->Avancer();
     }
+    string resultat="";
+    while(pileSymbole.size() != 1) {
+        resultat="";
+        cout << (s->Affiche());
+        cout << endl;
+        pileEtat.back()->transition(*this,s);
+        for (int i = 0; i < pileEtat.size(); i++) {
+            cout<<pileEtat[i]->Affiche();
+        }
+        cout << endl;
+
+        for (int i = 0; i < pileSymbole.size(); i++) {
+            cout<<pileSymbole[i]->Affiche();
+            resultat=resultat+pileSymbole[i]->Affiche();
+        }
+        cout << endl;
+
+        lexer->Avancer();
+    }
+    cout << endl;
+    cout<<"Le résultat de : "<<chaine<<" est : "<<resultat<<endl;
 }
 
 void Automate::reduction(int n,Symbole * s) {
@@ -66,8 +65,8 @@ void Automate::reduction(int n,Symbole * s) {
         pileEtat.pop_back();
     }
     cout << "Symbole ";
-    s->Affiche();
-    pileEtat.back()-> Affiche();
+    cout << s->Affiche();
+    cout << (pileEtat.back() -> Affiche());
     cout << endl;
     pileEtat.back()->transition(*this,s);
 }

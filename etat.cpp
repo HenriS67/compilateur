@@ -1,8 +1,8 @@
 #include "etat.h"
 #include <iostream>
 
-void Etat::Affiche() {
-   cout<<"("<<name<<")";
+string Etat::Affiche() {
+   return("("+name+")");
 }
 
 bool E0::transition(Automate &a, Symbole * s) {
@@ -11,42 +11,27 @@ bool E0::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E2());
             break;
 
-        case CLOSEPAR:
-            break;
-
-        case PLUS:
-            break;
-
-        case MULT:
-            break;
-
         case INT:
             a.decalage(s, new E3());
             break;
 
-        case FIN:
-            break;
-
         case ERREUR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         case EXPR:
             a.decalage(s, new E1());
             break;
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
 
 bool E1::transition(Automate &a, Symbole * s) {
     switch(*s) {
-        case OPENPAR:
-            break;
-
-        case CLOSEPAR:
-            break;
 
         case PLUS:
             a.decalage(s, new E4());
@@ -56,22 +41,18 @@ bool E1::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E5());
             break;
 
-        case INT:
-            break;
-
         case FIN:
-        cout << "on passe dedans" << endl;
-            return true;
+            cout << "on passe dedans" << endl;
+            //return true;
             break;
 
         case ERREUR:
-            break;
-
-        case EXPR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -82,31 +63,21 @@ bool E2::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E2());
             break;
 
-        case CLOSEPAR:
-            break;
-
-        case PLUS:
-            break;
-
-        case MULT:
-            break;
-
         case INT:
             a.decalage(s, new E3());
             break;
 
-        case FIN:
-            break;
-
         case ERREUR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         case EXPR:
             a.decalage(s, new E6());
             break;
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -114,8 +85,6 @@ bool E2::transition(Automate &a, Symbole * s) {
 bool E3::transition(Automate &a, Symbole * s) {
     Expr * s1;
     switch(*s) {
-        case OPENPAR:
-            break;
 
         case CLOSEPAR:
             s1 = (Expr*) a.popSymbol();
@@ -132,22 +101,18 @@ bool E3::transition(Automate &a, Symbole * s) {
             a.reduction(1, new Expr(s1->eval()));
             break;
 
-        case INT:
-            break;
-
         case FIN:
             s1 = (Expr*) a.popSymbol();
             a.reduction(1, new Expr(s1->eval()));
             break;
 
         case ERREUR:
-            break;
-
-        case EXPR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -158,31 +123,21 @@ bool E4::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E2());
             break;
 
-        case CLOSEPAR:
-            break;
-
-        case PLUS:
-            break;
-
-        case MULT:
-            break;
-
         case INT:
             a.decalage(s, new E3());
             break;
 
-        case FIN:
-            break;
-
         case ERREUR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         case EXPR:
             a.decalage(s, new E7());
             break;
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -193,39 +148,27 @@ bool E5::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E2());
             break;
 
-        case CLOSEPAR:
-            break;
-
-        case PLUS:
-            break;
-
-        case MULT:
-            break;
-
         case INT:
             a.decalage(s, new E3());
             break;
 
-        case FIN:
-            break;
-
         case ERREUR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         case EXPR:
             a.decalage(s, new E8());
             break;
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
 
 bool E6::transition(Automate &a, Symbole * s) {
     switch(*s) {
-        case OPENPAR:
-            break;
 
         case CLOSEPAR:
             a.decalage(s, new E9());
@@ -239,20 +182,13 @@ bool E6::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E5());
             break;
 
-        case INT:
-            break;
-
-        case FIN:
-            break;
-
         case ERREUR:
-            break;
-
-        case EXPR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -261,8 +197,6 @@ bool E7::transition(Automate &a, Symbole * s) {
     Expr * s1;
     Expr * s2;
     switch(*s) {
-        case OPENPAR:
-            break;
 
         case CLOSEPAR:
             s1 = (Expr*) a.popSymbol();
@@ -282,9 +216,6 @@ bool E7::transition(Automate &a, Symbole * s) {
             a.decalage(s, new E5());
             break;
 
-        case INT:
-            break;
-
         case FIN:
             s1 = (Expr*) a.popSymbol();
             a.popAndDestroySymbol();
@@ -293,13 +224,12 @@ bool E7::transition(Automate &a, Symbole * s) {
             break;
 
         case ERREUR:
-            break;
-
-        case EXPR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -308,8 +238,6 @@ bool E8::transition(Automate &a, Symbole * s) {
     Expr * s1;
     Expr * s2;
     switch(*s) {
-        case OPENPAR:
-            break;
 
         case CLOSEPAR:
             s1 = (Expr*) a.popSymbol();
@@ -332,9 +260,6 @@ bool E8::transition(Automate &a, Symbole * s) {
             a.reduction(3,new Expr(s2->eval() * s1->eval()));
             break;
 
-        case INT:
-            break;
-
         case FIN:
             s1 = (Expr*) a.popSymbol();
             a.popAndDestroySymbol();
@@ -343,13 +268,12 @@ bool E8::transition(Automate &a, Symbole * s) {
             break;
 
         case ERREUR:
-            break;
-
-        case EXPR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }
@@ -357,8 +281,6 @@ bool E8::transition(Automate &a, Symbole * s) {
 bool E9::transition(Automate &a, Symbole * s) {
     Expr * s1;;
     switch(*s) {
-        case OPENPAR:
-            break;
 
         case CLOSEPAR:
             a.popAndDestroySymbol();
@@ -381,9 +303,6 @@ bool E9::transition(Automate &a, Symbole * s) {
             a.reduction(3,new Expr(s1->eval()));
             break;
 
-        case INT:
-            break;
-
         case FIN:
             a.popAndDestroySymbol();
             s1 = (Expr*) a.popSymbol();
@@ -392,13 +311,12 @@ bool E9::transition(Automate &a, Symbole * s) {
             break;
 
         case ERREUR:
-            break;
-
-        case EXPR:
-            break;
+            cout<<"terme invalide"<<endl;
+            exit(EXIT_FAILURE);
 
         default:
-            break;
+            cout<<"expression invalide"<<endl;
+            exit(EXIT_FAILURE);
     }
     return false;
 }

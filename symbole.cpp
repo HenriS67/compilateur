@@ -7,6 +7,7 @@ string Symbole::Affiche() {
 }
 
 string Entier::Affiche() {
+   
    return(Symbole::Affiche()+"("+std::to_string(valeur)+")");
 }
 

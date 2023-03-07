@@ -9,7 +9,7 @@ class Etat {
         Etat() { }
         virtual ~Etat() { }
         virtual bool transition(Automate &a, Symbole * s)=0;
-        void Affiche();
+        string Affiche();
     protected:
         string name;
 };
